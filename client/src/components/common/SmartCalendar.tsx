@@ -142,12 +142,16 @@ export const SmartCalendar: React.FC<SmartCalendarProps> = ({ canSchedule = fals
         description: description.trim() || undefined,
       });
 
-      if (res.success) {
+      if (res && res.success) {
         setIsModalOpen(false);
         await fetchEvents();
-        setSelectedDateStr(scheduleDate);
+        if (res.data?.date) {
+          setSelectedDateStr(res.data.date);
+        } else {
+          setSelectedDateStr(scheduleDate);
+        }
       } else {
-        setModalError(res.message || 'Failed to schedule event.');
+        setModalError(res?.message || 'Failed to schedule event.');
       }
     } catch (err: any) {
       setModalError(err.response?.data?.message || 'Error scheduling date.');
