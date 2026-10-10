@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm --prefix client run build",
+    "build": "node scripts/build-client.js",
     "build:server": "tsc",
     "start": "node dist/server.js",
     "dev": "tsx src/server.ts",
