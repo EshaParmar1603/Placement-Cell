@@ -218,6 +218,40 @@ export interface InterviewPrepTopic {
   verificationDate?: string;
 }
 
+export interface InterviewQuestionItem {
+  id: string;
+  questionNumber: number;
+  category: string;
+  topic?: string;
+  questionText: string;
+  expectedAnswer?: string;
+  evaluationCriteria?: string;
+  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  maxScore?: number;
+  studentAnswer?: string;
+  feedback?: string;
+  score?: number;
+}
+
+export interface ScheduledAiInterview {
+  id: string;
+  title: string;
+  creatorId: string;
+  creatorName: string;
+  creatorRole: string;
+  targetAudience: string;
+  topics: string[];
+  difficulty: 'ENTRY' | 'INTERMEDIATE' | 'ADVANCED';
+  durationMinutes: number;
+  scheduledDate: string;
+  scheduledTime: string;
+  instructions?: string;
+  questions: InterviewQuestionItem[];
+  status: 'SCHEDULED' | 'ACTIVE' | 'COMPLETED';
+  totalQuestions: number;
+  createdAt: string;
+}
+
 export interface MockInterviewSession {
   id: string;
   studentId: string;
@@ -230,11 +264,14 @@ export interface MockInterviewSession {
   feedback?: any;
   createdAt: string;
   completedAt?: string;
+  scheduledTestId?: string;
   questions: Array<{
     id: string;
     questionNumber: number;
     category: string;
+    topic?: string;
     questionText: string;
+    expectedAnswer?: string;
     studentAnswer?: string;
     feedback?: string;
     score?: number;

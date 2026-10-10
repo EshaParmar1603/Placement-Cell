@@ -481,6 +481,11 @@ export const MockInterviewRoomPage: React.FC = () => {
                     <span className="px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 font-extrabold text-xs">
                       Question {currentQuestion.questionNumber} of {session.questions.length}
                     </span>
+                    {currentQuestion.topic && (
+                      <span className="px-2.5 py-1 rounded bg-amber-100 text-amber-900 font-bold text-xs uppercase tracking-wider">
+                        {currentQuestion.topic}
+                      </span>
+                    )}
                     <span className="px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-semibold text-xs">
                       {currentQuestion.category}
                     </span>

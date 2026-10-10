@@ -25,6 +25,7 @@ import {
   GraduationCap,
   ArrowLeft,
   ExternalLink,
+  BrainCircuit,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
@@ -77,7 +78,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { label: 'Campus News & Feed', path: '/feed', icon: Newspaper },
   ];
 
-  const isStaff = user?.role === 'PLACEMENT_MANAGER' || user?.role === 'ADMIN';
+  const isStaff = user?.role === 'PLACEMENT_MANAGER' || user?.role === 'ADMIN' || user?.role === 'MENTOR';
 
   const getDisplayName = () => {
     if (user?.studentProfile?.fullName) return user.studentProfile.fullName;
@@ -389,6 +390,26 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                           <span>Manage Drive Dates</span>
                         </div>
                         <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
+                      </NavLink>
+ 
+                      <NavLink
+                        to="/mock-interviews?schedule=true"
+                        onClick={onClose}
+                        className={({ isActive }) =>
+                          `flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-150 ${
+                            isActive
+                              ? 'bg-[#F5EFE1] text-[#172554] font-bold shadow-xs border-l-3 border-[#1E3A8A]'
+                              : 'text-stone-600 hover:text-stone-900 hover:bg-[#FAF8F5]'
+                          }`
+                        }
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <BrainCircuit className="w-4 h-4 text-indigo-700" />
+                          <span>Schedule AI Assessment</span>
+                        </div>
+                        <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-800">
+                          AI
+                        </span>
                       </NavLink>
 
                       {user?.role === 'ADMIN' && (
